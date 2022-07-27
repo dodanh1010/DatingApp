@@ -17,7 +17,8 @@ namespace API.Entities
         public int Id { get; set; } //day la primary key (tu tang)
         public string UserName { get; set; }
         //propfull co the hai cai ben duoi cung 1 luc
-
+        public byte[] PasswordHash { get; set; }
+        public byte[] PasswordSalt { get; set; }
         
 
     }
