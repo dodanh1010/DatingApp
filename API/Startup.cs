@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using API.Data;
 using API.Extensions;
 using API.Interfaces;
+using API.Middleware;
 using API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -47,13 +48,8 @@ namespace API
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //check xem minh co o development mode hay khong
-            if (env.IsDevelopment())
-            {
-                //neu trong development mode ma gap loi thi dung cai exception
-                app.UseDeveloperExceptionPage();
-
-            }
+            app.UseMiddleware<ExceptionMiddleware>();
+            //NGOAI LE CO THE DIEN RA O BAT KY DAU QUANH DAY
             //vao dia chi http thi dc dua den cai tps endpoints
             app.UseHttpsRedirection();
             //route giong trong cai weatherforecast (controller)
